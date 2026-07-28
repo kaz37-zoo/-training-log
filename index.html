@@ -127,7 +127,14 @@ main{max-width:680px;margin:auto;padding:0 16px 32px}
 .history-inline-actions button{width:100%;height:48px;border:0;border-radius:12px;background:var(--accent);color:white;font-weight:800}
 .history-inline-detail .section-label{margin-left:2px;margin-right:2px}
 
-</style></head><body><header class="app-header" id="appHeader"><div class="navline"><button class="nav-action left" id="headerLeft"></button><div class="nav-center" id="compactTitle">今日</div><div><span class="save-state" id="saveState">保存済み</span><span class="offline" id="offlineState">オフライン</span></div></div><div class="large-title" id="largeTitle">今日</div><div class="large-subtitle" id="largeSubtitle"></div></header><main id="main"><section id="todayPage" class="page active"><div class="progress-hero"><div class="progress-head"><div><h2>今日の進捗</h2><div class="large-subtitle" id="progressDetail"></div></div><strong id="progressPercent">0%</strong></div><div class="progress-track"><i id="progressBar"></i></div><div class="progress-meta"><span id="upperMeta">上半身 0/0</span><span id="absMeta">腹筋 ―</span><span id="lowerMeta">下半身 ―</span></div><div class="next-card" id="nextCard"><small>次の種目</small><b id="nextExercise">―</b></div></div><div id="upperGroups"></div><div class="section-label">サーキット</div><div id="circuits"></div><button class="finish-button" id="finishButton" onclick="finishWorkout()">トレーニングを終了</button></section><section id="historyPage" class="page"><div class="history-list group" id="historyList"></div></section><section id="settingsPage" class="page"><div class="update-banner" id="updateBanner"><span>新しいバージョンを利用できます</span><button onclick="applyUpdate()">更新</button></div><div class="section-label">トレーニング</div><div class="group"><div class="setting-row"><div class="row-copy"><b>セット完了後に自動休憩</b><small>完了と同時に休憩タイマーを開始</small></div><button class="toggle" id="autoTimerToggle" onclick="toggleSetting('autoTimer')"><i></i></button></div><div class="setting-row"><div class="row-copy"><b>完了種目を自動で閉じる</b><small>次の種目へ自動的に移動</small></div><button class="toggle" id="collapseToggle" onclick="toggleSetting('collapseDone')"><i></i></button></div><div class="setting-row"><div class="row-copy"><b>画面を消さない</b><small>トレーニング画面を開いている間だけ有効</small></div><button class="toggle" id="wakeToggle" onclick="toggleWakeLock()"><i></i></button></div></div><div class="section-label">メニュー</div><div class="group"><button class="group-row" onclick="openMenuManager()"><div class="row-copy"><b>上半身メニュー</b><small id="exerciseCount"></small></div><span class="chevron">›</span></button><button class="group-row" onclick="openCircuitManager('abs')"><div class="row-copy"><b id="absManageName"></b><small id="absManageCount"></small></div><span class="chevron">›</span></button><button class="group-row" onclick="openCircuitManager('lower')"><div class="row-copy"><b id="lowerManageName"></b><small id="lowerManageCount"></small></div><span class="chevron">›</span></button></div><div class="section-label">外観</div><div class="group"><button class="group-row" onclick="cycleTheme()"><div class="row-copy"><b>外観</b><small>システム・ライト・ダーク</small></div><span id="themeValue"></span></button></div><div class="section-label">データ</div><div class="group"><button class="group-row" onclick="exportData()"><div class="row-copy"><b>バックアップを書き出す</b></div></button><button class="group-row" onclick="document.getElementById('importFile').click()"><div class="row-copy"><b>バックアップを読み込む</b></div></button><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"><button class="group-row destructive" onclick="resetSelectedDate()"><div class="row-copy"><b>選択中の日付をリセット</b></div></button></div><div class="section-label">アプリ情報</div><div class="group"><div class="group-row"><div class="row-copy"><b>バージョン</b></div><span>3.0.2</span></div></div></section></main><nav class="tabbar" id="tabbar"><button class="active" data-tab="today" onclick="selectTab('today')"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 3v4m10-4v4M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1z"/><path class="fillable" d="M8 12l2.2 2.2L16 9"/></svg><span>今日</span></button><button data-tab="history" onclick="selectTab('history')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>履歴</span></button><button data-tab="settings" onclick="selectTab('settings')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21h-4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1L7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1v4H21a1.7 1.7 0 0 0-1.6 1z"/></svg><span>設定</span></button></nav><section class="detail-page" id="historyDetail"><div class="detail-header"><button onclick="closeHistoryDetail()">‹ 履歴</button><b id="detailTitle"></b><button onclick="editDetailDate()">編集</button></div><div class="detail-content" id="detailContent"></div></section><div class="timer compact" id="timer"><div class="timer-summary" onclick="toggleTimerExpanded()"><div class="timer-copy"><small id="timerNext">休憩中</small><b id="timerText">01:30</b></div><button>⌃</button></div><div class="timer-expanded"><div class="timer-actions"><button onclick="adjustTimer(-15)">−15秒</button><button onclick="stopTimer()">スキップ</button><button onclick="adjustTimer(15)">＋15秒</button></div></div></div><div class="sheet" id="managerSheet" onclick="sheetBackdrop(event)"><div class="sheet-panel" id="managerPanel"><div class="sheet-handle"></div><div class="sheet-nav"><button onclick="closeSheet()">キャンセル</button><b id="sheetTitle"></b><button id="sheetDone" onclick="saveSheet()">完了</button></div><div id="sheetBody"></div></div></div><div class="toast" id="toast"></div><script>
+
+[data-theme="dark"]{--bg:#000;--surface:#1C1C1E;--surface2:#2C2C2E;--line:rgba(255,255,255,.16);--text:#fff;--sub:#C7C7CC;--muted:#8E8E93;--accent:#91C6A1;--accent-soft:#20372A;--danger:#FF6961;--warning:#FFD60A}
+[data-theme="dark"] .row-copy b,[data-theme="dark"] .history-date,[data-theme="dark"] .exercise-copy b,[data-theme="dark"] .circuit-head h3,[data-theme="dark"] .large-title,[data-theme="dark"] .nav-center{color:#fff}
+[data-theme="dark"] .row-copy small,[data-theme="dark"] .exercise-copy small,[data-theme="dark"] .circuit-head p,[data-theme="dark"] .history-summary,[data-theme="dark"] .large-subtitle,[data-theme="dark"] .section-label{color:#C7C7CC}
+[data-theme="dark"] input,[data-theme="dark"] textarea,[data-theme="dark"] select{color:#fff}
+[data-theme="dark"] input::placeholder,[data-theme="dark"] textarea::placeholder{color:#8E8E93}
+[data-theme="dark"] .chevron{color:#C7C7CC}
+</style></head><body><header class="app-header" id="appHeader"><div class="navline"><button class="nav-action left" id="headerLeft"></button><div class="nav-center" id="compactTitle">今日</div><div><span class="save-state" id="saveState">保存済み</span><span class="offline" id="offlineState">オフライン</span></div></div><div class="large-title" id="largeTitle">今日</div><div class="large-subtitle" id="largeSubtitle"></div></header><main id="main"><section id="todayPage" class="page active"><div class="progress-hero"><div class="progress-head"><div><h2>今日の進捗</h2><div class="large-subtitle" id="progressDetail"></div></div><strong id="progressPercent">0%</strong></div><div class="progress-track"><i id="progressBar"></i></div><div class="progress-meta"><span id="upperMeta">上半身 0/0</span><span id="absMeta">腹筋 ―</span><span id="lowerMeta">下半身 ―</span></div><div class="next-card" id="nextCard"><small>次の種目</small><b id="nextExercise">―</b></div></div><div id="upperGroups"></div><div class="section-label">サーキット</div><div id="circuits"></div><button class="finish-button" id="finishButton" onclick="finishWorkout()">トレーニングを終了</button></section><section id="historyPage" class="page"><div class="history-list group" id="historyList"></div></section><section id="settingsPage" class="page"><div class="update-banner" id="updateBanner"><span>新しいバージョンを利用できます</span><button onclick="applyUpdate()">更新</button></div><div class="section-label">トレーニング</div><div class="group"><div class="setting-row"><div class="row-copy"><b>セット完了後に自動休憩</b><small>完了と同時に休憩タイマーを開始</small></div><button class="toggle" id="autoTimerToggle" onclick="toggleSetting('autoTimer')"><i></i></button></div><div class="setting-row"><div class="row-copy"><b>完了種目を自動で閉じる</b><small>次の種目へ自動的に移動</small></div><button class="toggle" id="collapseToggle" onclick="toggleSetting('collapseDone')"><i></i></button></div><div class="setting-row"><div class="row-copy"><b>画面を消さない</b><small>トレーニング画面を開いている間だけ有効</small></div><button class="toggle" id="wakeToggle" onclick="toggleWakeLock()"><i></i></button></div></div><div class="section-label">メニュー</div><div class="group"><button class="group-row" onclick="openMenuManager()"><div class="row-copy"><b>上半身メニュー</b><small id="exerciseCount"></small></div><span class="chevron">›</span></button><button class="group-row" onclick="openCircuitManager('abs')"><div class="row-copy"><b id="absManageName"></b><small id="absManageCount"></small></div><span class="chevron">›</span></button><button class="group-row" onclick="openCircuitManager('lower')"><div class="row-copy"><b id="lowerManageName"></b><small id="lowerManageCount"></small></div><span class="chevron">›</span></button></div><div class="section-label">外観</div><div class="group"><button class="group-row" onclick="cycleTheme()"><div class="row-copy"><b>外観</b><small>システム・ライト・ダーク</small></div><span id="themeValue"></span></button></div><div class="section-label">データ</div><div class="group"><button class="group-row" onclick="exportData()"><div class="row-copy"><b>バックアップを書き出す</b></div></button><button class="group-row" onclick="document.getElementById('importFile').click()"><div class="row-copy"><b>バックアップを読み込む</b></div></button><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"><button class="group-row" onclick="openPastDatePicker()"><div class="row-copy"><b>過去の日付を入力・編集</b><small>古い記録も日付を選んで手動入力できます</small></div><span class="chevron">›</span></button><button class="group-row destructive" onclick="resetSelectedDate()"><div class="row-copy"><b>選択中の日付をリセット</b></div></button></div><div class="section-label">アプリ情報</div><div class="group"><div class="group-row"><div class="row-copy"><b>バージョン</b></div><span>3.0.3</span></div></div></section></main><nav class="tabbar" id="tabbar"><button class="active" data-tab="today" onclick="selectTab('today')"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 3v4m10-4v4M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1z"/><path class="fillable" d="M8 12l2.2 2.2L16 9"/></svg><span>今日</span></button><button data-tab="history" onclick="selectTab('history')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>履歴</span></button><button data-tab="settings" onclick="selectTab('settings')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21h-4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1L7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1v4H21a1.7 1.7 0 0 0-1.6 1z"/></svg><span>設定</span></button></nav><section class="detail-page" id="historyDetail"><div class="detail-header"><button onclick="closeHistoryDetail()">‹ 履歴</button><b id="detailTitle"></b><button onclick="editDetailDate()">編集</button></div><div class="detail-content" id="detailContent"></div></section><div class="timer compact" id="timer"><div class="timer-summary" onclick="toggleTimerExpanded()"><div class="timer-copy"><small id="timerNext">休憩中</small><b id="timerText">01:30</b></div><button>⌃</button></div><div class="timer-expanded"><div class="timer-actions"><button onclick="adjustTimer(-15)">−15秒</button><button onclick="stopTimer()">スキップ</button><button onclick="adjustTimer(15)">＋15秒</button></div></div></div><div class="sheet" id="managerSheet" onclick="sheetBackdrop(event)"><div class="sheet-panel" id="managerPanel"><div class="sheet-handle"></div><div class="sheet-nav"><button onclick="closeSheet()">キャンセル</button><b id="sheetTitle"></b><button id="sheetDone" onclick="saveSheet()">完了</button></div><div id="sheetBody"></div></div></div><div class="toast" id="toast"></div><script>
 const KEY='kaz-training-log-v2',OLD_KEY='kaz-training-log-v1',SETTINGS_KEY='kaz-training-settings-v2';
 const DEFAULT_EXERCISES=[
 {id:'pushup',name:'プッシュアップ',group:'胸',type:'reps',sets:3,weight:0,rest:90,note:'10回×3セット'},
@@ -150,7 +157,7 @@ const fmtDate=d=>new Date(d+'T00:00:00').toLocaleDateString('ja-JP',{month:'long
 const dayIndex=d=>new Date(d+'T00:00:00').getDay().toString();
 const store={get:k=>{try{return localStorage.getItem(k)}catch{return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch{}}};
 
-function loadSettings(){try{return{autoTimer:true,collapseDone:true,wakeLock:false,theme:'system',...(JSON.parse(store.get(SETTINGS_KEY)||'{}')||{})}}catch{return{autoTimer:true,collapseDone:true,wakeLock:false,theme:'system'}}}
+function loadSettings(){const base={autoTimer:true,collapseDone:true,wakeLock:false,theme:'system'};try{const raw=JSON.parse(store.get(SETTINGS_KEY)||'{}')||{},v={...base,...raw};if(!['system','light','dark'].includes(v.theme))v.theme='system';return v}catch{return base}}
 function loadState(){
  try{
   const raw=store.get(KEY)||store.get(OLD_KEY);
@@ -200,7 +207,7 @@ function applyTheme(){
  document.querySelector('meta[name=apple-mobile-web-app-status-bar-style]')?.setAttribute('content',dark?'black-translucent':'default');
  document.getElementById('themeValue').textContent={system:'システム',light:'ライト',dark:'ダーク'}[settings.theme];
 }
-function cycleTheme(){settings.theme=settings.theme==='system'?'light':settings.theme==='light'?'dark':'system';applyTheme();save()}
+function cycleTheme(){settings.theme=settings.theme==='system'?'light':settings.theme==='light'?'dark':'system';store.set(SETTINGS_KEY,JSON.stringify(settings));applyTheme();renderSettings();toast(`外観：${{system:'システム',light:'ライト',dark:'ダーク'}[settings.theme]}`)}
 matchMedia('(prefers-color-scheme:dark)').addEventListener?.('change',applyTheme);
 
 function selectTab(tab){
@@ -325,9 +332,15 @@ function editDetailDate(){closeHistoryDetail();editPastDate(detailDate)}
 function deleteHistory(date){if(!confirm(`${fmtDate(date)}の記録を削除しますか？`))return;state.sessions=state.sessions.filter(s=>s.date!==date);if(selectedDate===date){selectedDate=today;session=getSession(today)}save();closeHistoryDetail();render();toast('記録を削除しました')}
 
 function renderSettings(){
- document.getElementById('autoTimerToggle').classList.toggle('on',settings.autoTimer);document.getElementById('collapseToggle').classList.toggle('on',settings.collapseDone);document.getElementById('wakeToggle').classList.toggle('on',settings.wakeLock);
+ document.getElementById('autoTimerToggle').classList.toggle('on',!!settings.autoTimer);
+ document.getElementById('collapseToggle').classList.toggle('on',!!settings.collapseDone);
+ document.getElementById('wakeToggle').classList.toggle('on',!!settings.wakeLock);
  document.getElementById('exerciseCount').textContent=`${state.exercises.length}種目`;
- for(const k of ['abs','lower']){document.getElementById(k+'ManageName').textContent=state.circuitDefs[k].name;document.getElementById(k+'ManageCount').textContent=`${state.circuitDefs[k].items.length}種目`}
+ for(const k of ['abs','lower']){
+  const d=state.circuitDefs?.[k]||DEFAULT_CIRCUITS[k];
+  document.getElementById(k+'ManageName').textContent=d.name||DEFAULT_CIRCUITS[k].name;
+  document.getElementById(k+'ManageCount').textContent=`${Array.isArray(d.items)?d.items.length:DEFAULT_CIRCUITS[k].items.length}種目`
+ }
  applyTheme();
 }
 function toggleSetting(k){settings[k]=!settings[k];save();renderSettings()}
@@ -335,6 +348,10 @@ async function toggleWakeLock(){settings.wakeLock=!settings.wakeLock;if(settings
 async function requestWakeLock(){try{if('wakeLock'in navigator&&document.visibilityState==='visible')wakeLock=await navigator.wakeLock.request('screen')}catch{}}
 async function releaseWakeLock(){try{await wakeLock?.release();wakeLock=null}catch{}}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&settings.wakeLock&&activeTab==='today')requestWakeLock();else releaseWakeLock()});
+
+
+function openPastDatePicker(){sheetMode='pastDate';sheetData={date:selectedDate};document.getElementById('sheetTitle').textContent='過去の日付を選択';document.getElementById('sheetBody').innerHTML=`<div class="form-section"><label>日付</label><div class="form-group"><div class="form-row"><span>トレーニング日</span><input id="pastDateInput" type="date" max="${today}" value="${selectedDate}"></div></div></div><div class="form-section"><div class="form-group"><div class="group-row"><div class="row-copy"><b>選択した日を今日画面で開きます</b><small>上半身・腹筋・下半身を通常どおり入力できます</small></div></div></div></div>`;openSheet()}
+function openSelectedPastDate(){const value=document.getElementById('pastDateInput')?.value;if(!value){alert('日付を選択してください');return}if(value>today){alert('未来の日付は選択できません');return}closeSheet();editPastDate(value)}
 
 function openMenuManager(){
  sheetMode='menu';sheetData=clone(state.exercises);document.getElementById('sheetTitle').textContent='上半身メニュー';
@@ -367,6 +384,7 @@ function openSheet(){document.getElementById('managerSheet').classList.add('show
 function closeSheet(){document.getElementById('managerSheet').classList.remove('show');sheetMode=null;sheetData=null}
 function sheetBackdrop(e){if(e.target.id==='managerSheet')closeSheet()}
 function saveSheet(){
+ if(sheetMode==='pastDate'){openSelectedPastDate();return}
  if(sheetMode==='exercise'){
   const e=sheetData.ex;e.name=document.getElementById('fName').value.trim();e.group=document.getElementById('fGroup').value;e.type=document.getElementById('fType').value;e.sets=Math.max(1,Number(document.getElementById('fSets').value)||3);e.weight=Math.max(0,Number(document.getElementById('fWeight').value)||0);e.rest=Math.max(0,Number(document.getElementById('fRest').value)||0);e.note=document.getElementById('fNote').value.trim();
   if(!e.name||!e.days?.length){alert('種目名と実施曜日を設定してください');return}
@@ -391,21 +409,37 @@ function adjustTimer(sec){timerEnd+=sec*1000;tickTimer()}
 function stopTimer(hide=true){clearInterval(timerId);timerId=null;if(hide!==false)document.getElementById('timer').classList.remove('show')}
 function toggleTimerExpanded(){document.getElementById('timer').classList.toggle('compact')}
 
-function exportData(){const blob=new Blob([JSON.stringify({version:'3.0.2',state,settings},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`training-log-${dateKey()}.json`;a.click();URL.revokeObjectURL(a.href)}
-function importData(e){const f=e.target.files?.[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.state?.sessions||!x.state?.exercises)throw 0;state=x.state;settings={...settings,...(x.settings||{})};selectedDate=today;session=getSession(today);save();render();toast('読み込みました')}catch{alert('有効なバックアップではありません')}};r.readAsText(f);e.target.value=''}
-function resetSelectedDate(){if(!confirm(`${fmtDate(selectedDate)}の入力をリセットしますか？`))return;state.sessions=state.sessions.filter(s=>s.date!==selectedDate);session=getSession(selectedDate);save();render();toast('リセットしました')}
-
-function updateOnline(){document.getElementById('offlineState').classList.toggle('show',!navigator.onLine)}
-addEventListener('online',updateOnline);addEventListener('offline',updateOnline);updateOnline();
-
+function exportData(){const blob=new Blob([JSON.stringify({version:'3.0.3',state,settings},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`training-log-${dateKey()}.json`;a.click();URL.revokeObjectURL(a.href)}
+function migrateLegacyBackup(x){
+ if(x?.state?.sessions&&x?.state?.exercises)return{state:x.state,settings:x.settings||null};
+ if(x?.sessions&&x?.exercises)return{state:x,settings:null};
+ const src=x?.history||x?.records||x?.workouts;
+ if(!src)throw 0;
+ const entries=Array.isArray(src)?src:Object.entries(src).map(([date,v])=>({date,...v})),sessions=[];
+ for(const item of entries){
+  const date=item.date||item.day;if(!date)continue;
+  const s={date,log:{},circuits:{abs:{completed:false,stops:0,note:''},lower:{completed:false,stops:0,note:''}},finished:true,exerciseSnapshots:{}};
+  const logs=item.log||item.exercises||item.upper||{};
+  if(Array.isArray(logs))for(const ex of logs){const id=ex.id||('legacy_'+Math.random().toString(36).slice(2)),sets=(ex.sets||[]).map(v=>({w:Number(v.w??v.weight??0),r:Number(v.r??v.reps??0),done:v.done!==false}));s.log[id]={sets};s.exerciseSnapshots[id]={name:ex.name||'旧バックアップ種目',group:ex.group||'その他',type:ex.type||'reps',sets:sets.length}}
+  else for(const [id,val] of Object.entries(logs)){const arr=Array.isArray(val)?val:(val?.sets||[]);s.log[id]={sets:arr.map(v=>({w:Number(v.w??v.weight??0),r:Number(v.r??v.reps??v??0),done:v.done!==false}))}}
+  const a=item.abs||item.circuits?.abs,l=item.lower||item.legs||item.circuits?.lower;
+  if(a)s.circuits.abs={completed:!!(a.completed??a.done??a),stops:Number(a.stops||0),note:a.note||''};
+  if(l)s.circuits.lower={completed:!!(l.completed??l.done??l),stops:Number(l.stops||0),note:l.note||''};
+  sessions.push(s)
+ }
+ return{state:{exercises:clone(DEFAULT_EXERCISES),sessions,deletedExerciseIds:[],circuitDefs:clone(DEFAULT_CIRCUITS)},settings:null}
+}
+function importData(e){const f=e.target.files?.[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const m=migrateLegacyBackup(JSON.parse(r.result));state=m.state;settings={...settings,...(m.settings||{})};if(!state.circuitDefs)state.circuitDefs=clone(DEFAULT_CIRCUITS);selectedDate=today;session=getSession(today);store.set(KEY,JSON.stringify(state));store.set(SETTINGS_KEY,JSON.stringify(settings));render();toast('バックアップを読み込みました')}catch{alert('この形式は自動変換できません。過去の日付入力から追加してください')}};r.readAsText(f);e.target.value=''}
 if('serviceWorker'in navigator){
  navigator.serviceWorker.register('./sw.js').then(reg=>{
-  if(reg.waiting){waitingWorker=reg.waiting;document.getElementById('updateBanner').classList.add('show')}
-  reg.addEventListener('updatefound',()=>{const w=reg.installing;w?.addEventListener('statechange',()=>{if(w.state==='installed'&&navigator.serviceWorker.controller){waitingWorker=w;document.getElementById('updateBanner').classList.add('show')}})})
- });
- navigator.serviceWorker.addEventListener('controllerchange',()=>location.reload());
+  const show=w=>{if(!w)return;waitingWorker=w;document.getElementById('updateBanner').classList.add('show')};
+  if(reg.waiting)show(reg.waiting);
+  reg.addEventListener('updatefound',()=>{const w=reg.installing;w?.addEventListener('statechange',()=>{if(w.state==='installed'&&navigator.serviceWorker.controller)show(w)})});
+  reg.update().catch(()=>{})
+ }).catch(()=>{});
+ navigator.serviceWorker.addEventListener('controllerchange',()=>location.reload())
 }
-function applyUpdate(){if(waitingWorker){store.set(KEY,JSON.stringify(state));waitingWorker.postMessage({type:'SKIP_WAITING'})}}
+function applyUpdate(){document.getElementById('updateBanner').classList.remove('show');if(waitingWorker){store.set(KEY,JSON.stringify(state));store.set(SETTINGS_KEY,JSON.stringify(settings));waitingWorker.postMessage({type:'SKIP_WAITING'})}}
 
 let touchX=0;
 document.getElementById('historyDetail').addEventListener('touchstart',e=>touchX=e.touches[0].clientX,{passive:true});
