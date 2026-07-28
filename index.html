@@ -22,8 +22,8 @@ button:active{opacity:.72}
 .navline{height:32px;display:flex;align-items:center;justify-content:space-between}
 .nav-action{min-width:54px;border:0;background:transparent;color:var(--accent);font-weight:600;padding:5px 0}
 .nav-action.right{text-align:right}.nav-action.left{text-align:left}
-.nav-center{font-size:17px;font-weight:700;opacity:0;transition:.15s}
-.app-header.compact .nav-center{opacity:1}
+.nav-center{font-size:17px;font-weight:700;opacity:0;visibility:hidden;transition:.15s}
+.app-header.compact .nav-center{opacity:1;visibility:visible}
 .large-title{font-size:var(--title);line-height:1.08;font-weight:800;letter-spacing:-.04em;margin:7px 0 0}
 .large-subtitle{font-size:13px;color:var(--sub);margin-top:5px}
 .save-state{font-size:12px;color:var(--accent);font-weight:700;opacity:0;transition:.18s}
@@ -32,7 +32,7 @@ main{max-width:680px;margin:auto;padding:0 16px 32px}
 .page{display:none}.page.active{display:block}
 .section-label{font-size:13px;text-transform:none;color:var(--sub);margin:24px 16px 8px;font-weight:500}
 .group{background:var(--surface);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
-.group-row{min-height:52px;padding:11px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+.group-row{width:100%;min-height:52px;padding:11px 16px;display:flex;align-items:center;gap:12px;border:0;border-bottom:1px solid var(--line);background:transparent;text-align:left}
 .group-row:last-child{border-bottom:0}
 .row-copy{flex:1;min-width:0}.row-copy b{font-size:var(--body)}.row-copy small{display:block;color:var(--sub);font-size:13px;margin-top:3px;line-height:1.35}
 .chevron{color:var(--muted);font-size:24px;font-weight:300}
@@ -113,7 +113,21 @@ main{max-width:680px;margin:auto;padding:0 16px 32px}
 .offline{display:none;color:var(--warning);font-size:12px;font-weight:700}.offline.show{display:block}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 @media(max-width:390px){.set-line{grid-template-columns:39px 1fr 1fr 44px}.stepbox{grid-template-columns:32px 1fr 32px}}
-</style></head><body><header class="app-header" id="appHeader"><div class="navline"><button class="nav-action left" id="headerLeft"></button><div class="nav-center" id="compactTitle">今日</div><div><span class="save-state" id="saveState">保存済み</span><span class="offline" id="offlineState">オフライン</span></div></div><div class="large-title" id="largeTitle">今日</div><div class="large-subtitle" id="largeSubtitle"></div></header><main id="main"><section id="todayPage" class="page active"><div class="progress-hero"><div class="progress-head"><div><h2>今日の進捗</h2><div class="large-subtitle" id="progressDetail"></div></div><strong id="progressPercent">0%</strong></div><div class="progress-track"><i id="progressBar"></i></div><div class="progress-meta"><span id="upperMeta">上半身 0/0</span><span id="absMeta">腹筋 ―</span><span id="lowerMeta">下半身 ―</span></div><div class="next-card" id="nextCard"><small>次の種目</small><b id="nextExercise">―</b></div></div><div id="upperGroups"></div><div class="section-label">サーキット</div><div id="circuits"></div><button class="finish-button" id="finishButton" onclick="finishWorkout()">トレーニングを終了</button></section><section id="historyPage" class="page"><div class="history-list group" id="historyList"></div></section><section id="settingsPage" class="page"><div class="update-banner" id="updateBanner"><span>新しいバージョンを利用できます</span><button onclick="applyUpdate()">更新</button></div><div class="section-label">トレーニング</div><div class="group"><div class="setting-row"><div class="row-copy"><b>セット完了後に自動休憩</b><small>完了と同時に休憩タイマーを開始</small></div><button class="toggle" id="autoTimerToggle" onclick="toggleSetting('autoTimer')"><i></i></button></div><div class="setting-row"><div class="row-copy"><b>完了種目を自動で閉じる</b><small>次の種目へ自動的に移動</small></div><button class="toggle" id="collapseToggle" onclick="toggleSetting('collapseDone')"><i></i></button></div><div class="setting-row"><div class="row-copy"><b>画面を消さない</b><small>トレーニング画面を開いている間だけ有効</small></div><button class="toggle" id="wakeToggle" onclick="toggleWakeLock()"><i></i></button></div></div><div class="section-label">メニュー</div><div class="group"><button class="group-row" onclick="openMenuManager()"><div class="row-copy"><b>上半身メニュー</b><small id="exerciseCount"></small></div><span class="chevron">›</span></button><button class="group-row" onclick="openCircuitManager('abs')"><div class="row-copy"><b id="absManageName"></b><small id="absManageCount"></small></div><span class="chevron">›</span></button><button class="group-row" onclick="openCircuitManager('lower')"><div class="row-copy"><b id="lowerManageName"></b><small id="lowerManageCount"></small></div><span class="chevron">›</span></button></div><div class="section-label">外観</div><div class="group"><button class="group-row" onclick="cycleTheme()"><div class="row-copy"><b>外観</b><small>システム・ライト・ダーク</small></div><span id="themeValue"></span></button></div><div class="section-label">データ</div><div class="group"><button class="group-row" onclick="exportData()"><div class="row-copy"><b>バックアップを書き出す</b></div></button><button class="group-row" onclick="document.getElementById('importFile').click()"><div class="row-copy"><b>バックアップを読み込む</b></div></button><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"><button class="group-row destructive" onclick="resetSelectedDate()"><div class="row-copy"><b>選択中の日付をリセット</b></div></button></div><div class="section-label">アプリ情報</div><div class="group"><div class="group-row"><div class="row-copy"><b>バージョン</b></div><span>3.0.1</span></div></div></section></main><nav class="tabbar" id="tabbar"><button class="active" data-tab="today" onclick="selectTab('today')"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 3v4m10-4v4M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1z"/><path class="fillable" d="M8 12l2.2 2.2L16 9"/></svg><span>今日</span></button><button data-tab="history" onclick="selectTab('history')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>履歴</span></button><button data-tab="settings" onclick="selectTab('settings')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21h-4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1L7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1v4H21a1.7 1.7 0 0 0-1.6 1z"/></svg><span>設定</span></button></nav><section class="detail-page" id="historyDetail"><div class="detail-header"><button onclick="closeHistoryDetail()">‹ 履歴</button><b id="detailTitle"></b><button onclick="editDetailDate()">編集</button></div><div class="detail-content" id="detailContent"></div></section><div class="timer compact" id="timer"><div class="timer-summary" onclick="toggleTimerExpanded()"><div class="timer-copy"><small id="timerNext">休憩中</small><b id="timerText">01:30</b></div><button>⌃</button></div><div class="timer-expanded"><div class="timer-actions"><button onclick="adjustTimer(-15)">−15秒</button><button onclick="stopTimer()">スキップ</button><button onclick="adjustTimer(15)">＋15秒</button></div></div></div><div class="sheet" id="managerSheet" onclick="sheetBackdrop(event)"><div class="sheet-panel" id="managerPanel"><div class="sheet-handle"></div><div class="sheet-nav"><button onclick="closeSheet()">キャンセル</button><b id="sheetTitle"></b><button id="sheetDone" onclick="saveSheet()">完了</button></div><div id="sheetBody"></div></div></div><div class="toast" id="toast"></div><script>
+
+.group>button.group-row,.history-list>button.group-row{display:flex;width:100%}
+.setting-row,.group-row{box-sizing:border-box}
+.group-row .row-copy{flex:1;min-width:0}
+.group-row .chevron{margin-left:auto}
+.history-card{margin-bottom:12px}
+.history-inline-detail{display:none;padding:0 14px 14px}
+.history-card.open .history-inline-detail{display:block}
+.history-card.open .history-chevron{transform:rotate(180deg)}
+.history-chevron{transition:.18s}
+.history-inline-actions{padding-top:14px}
+.history-inline-actions button{width:100%;height:48px;border:0;border-radius:12px;background:var(--accent);color:white;font-weight:800}
+.history-inline-detail .section-label{margin-left:2px;margin-right:2px}
+
+</style></head><body><header class="app-header" id="appHeader"><div class="navline"><button class="nav-action left" id="headerLeft"></button><div class="nav-center" id="compactTitle">今日</div><div><span class="save-state" id="saveState">保存済み</span><span class="offline" id="offlineState">オフライン</span></div></div><div class="large-title" id="largeTitle">今日</div><div class="large-subtitle" id="largeSubtitle"></div></header><main id="main"><section id="todayPage" class="page active"><div class="progress-hero"><div class="progress-head"><div><h2>今日の進捗</h2><div class="large-subtitle" id="progressDetail"></div></div><strong id="progressPercent">0%</strong></div><div class="progress-track"><i id="progressBar"></i></div><div class="progress-meta"><span id="upperMeta">上半身 0/0</span><span id="absMeta">腹筋 ―</span><span id="lowerMeta">下半身 ―</span></div><div class="next-card" id="nextCard"><small>次の種目</small><b id="nextExercise">―</b></div></div><div id="upperGroups"></div><div class="section-label">サーキット</div><div id="circuits"></div><button class="finish-button" id="finishButton" onclick="finishWorkout()">トレーニングを終了</button></section><section id="historyPage" class="page"><div class="history-list group" id="historyList"></div></section><section id="settingsPage" class="page"><div class="update-banner" id="updateBanner"><span>新しいバージョンを利用できます</span><button onclick="applyUpdate()">更新</button></div><div class="section-label">トレーニング</div><div class="group"><div class="setting-row"><div class="row-copy"><b>セット完了後に自動休憩</b><small>完了と同時に休憩タイマーを開始</small></div><button class="toggle" id="autoTimerToggle" onclick="toggleSetting('autoTimer')"><i></i></button></div><div class="setting-row"><div class="row-copy"><b>完了種目を自動で閉じる</b><small>次の種目へ自動的に移動</small></div><button class="toggle" id="collapseToggle" onclick="toggleSetting('collapseDone')"><i></i></button></div><div class="setting-row"><div class="row-copy"><b>画面を消さない</b><small>トレーニング画面を開いている間だけ有効</small></div><button class="toggle" id="wakeToggle" onclick="toggleWakeLock()"><i></i></button></div></div><div class="section-label">メニュー</div><div class="group"><button class="group-row" onclick="openMenuManager()"><div class="row-copy"><b>上半身メニュー</b><small id="exerciseCount"></small></div><span class="chevron">›</span></button><button class="group-row" onclick="openCircuitManager('abs')"><div class="row-copy"><b id="absManageName"></b><small id="absManageCount"></small></div><span class="chevron">›</span></button><button class="group-row" onclick="openCircuitManager('lower')"><div class="row-copy"><b id="lowerManageName"></b><small id="lowerManageCount"></small></div><span class="chevron">›</span></button></div><div class="section-label">外観</div><div class="group"><button class="group-row" onclick="cycleTheme()"><div class="row-copy"><b>外観</b><small>システム・ライト・ダーク</small></div><span id="themeValue"></span></button></div><div class="section-label">データ</div><div class="group"><button class="group-row" onclick="exportData()"><div class="row-copy"><b>バックアップを書き出す</b></div></button><button class="group-row" onclick="document.getElementById('importFile').click()"><div class="row-copy"><b>バックアップを読み込む</b></div></button><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"><button class="group-row destructive" onclick="resetSelectedDate()"><div class="row-copy"><b>選択中の日付をリセット</b></div></button></div><div class="section-label">アプリ情報</div><div class="group"><div class="group-row"><div class="row-copy"><b>バージョン</b></div><span>3.0.2</span></div></div></section></main><nav class="tabbar" id="tabbar"><button class="active" data-tab="today" onclick="selectTab('today')"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 3v4m10-4v4M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1z"/><path class="fillable" d="M8 12l2.2 2.2L16 9"/></svg><span>今日</span></button><button data-tab="history" onclick="selectTab('history')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>履歴</span></button><button data-tab="settings" onclick="selectTab('settings')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21h-4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1L7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1v4H21a1.7 1.7 0 0 0-1.6 1z"/></svg><span>設定</span></button></nav><section class="detail-page" id="historyDetail"><div class="detail-header"><button onclick="closeHistoryDetail()">‹ 履歴</button><b id="detailTitle"></b><button onclick="editDetailDate()">編集</button></div><div class="detail-content" id="detailContent"></div></section><div class="timer compact" id="timer"><div class="timer-summary" onclick="toggleTimerExpanded()"><div class="timer-copy"><small id="timerNext">休憩中</small><b id="timerText">01:30</b></div><button>⌃</button></div><div class="timer-expanded"><div class="timer-actions"><button onclick="adjustTimer(-15)">−15秒</button><button onclick="stopTimer()">スキップ</button><button onclick="adjustTimer(15)">＋15秒</button></div></div></div><div class="sheet" id="managerSheet" onclick="sheetBackdrop(event)"><div class="sheet-panel" id="managerPanel"><div class="sheet-handle"></div><div class="sheet-nav"><button onclick="closeSheet()">キャンセル</button><b id="sheetTitle"></b><button id="sheetDone" onclick="saveSheet()">完了</button></div><div id="sheetBody"></div></div></div><div class="toast" id="toast"></div><script>
 const KEY='kaz-training-log-v2',OLD_KEY='kaz-training-log-v1',SETTINGS_KEY='kaz-training-settings-v2';
 const DEFAULT_EXERCISES=[
 {id:'pushup',name:'プッシュアップ',group:'胸',type:'reps',sets:3,weight:0,rest:90,note:'10回×3セット'},
@@ -266,12 +280,38 @@ function returnToToday(){selectedDate=today;session=getSession(today);render();w
 
 function renderHistory(){
  const list=[...state.sessions].filter(hasData).sort((a,b)=>b.date.localeCompare(a.date));
- document.getElementById('historyList').innerHTML=list.length?list.map(s=>{
+ const root=document.getElementById('historyList');
+ if(!list.length){root.classList.add('group');root.innerHTML='<div class="group-row"><div class="row-copy"><small>まだ記録がありません</small></div></div>';return}
+ root.classList.remove('group');
+ root.innerHTML=list.map(s=>{
   const ids=Object.keys(s.log||{}),exs=ids.map(id=>state.exercises.find(ex=>ex.id===id)||{id,...(s.exerciseSnapshots?.[id]||{}),name:s.exerciseSnapshots?.[id]?.name||'削除済み種目',group:s.exerciseSnapshots?.[id]?.group||'その他',type:s.exerciseSnapshots?.[id]?.type||'reps',sets:(s.log[id]?.sets||s.log[id]||[]).length});
   const done=exs.filter(ex=>exerciseDone(ex,s)).length,a=s.circuits?.abs||{},l=s.circuits?.lower||{};
-  return `<button class="group-row" onclick="openHistoryDetail('${s.date}')"><div class="row-copy"><div class="history-date">${fmtDate(s.date)}</div><div class="history-summary">上半身 ${done}/${exs.length}・腹筋 ${a.completed?'完走':'未完了'}・下半身 ${l.completed?'完走':'未完了'}・停止 ${(a.stops||0)+(l.stops||0)}回</div></div><span class="chevron">›</span></button>`
- }).join(''):'<div class="group-row"><div class="row-copy"><small>まだ記録がありません</small></div></div>';
+  return `<article class="group history-card" id="history-${s.date}">
+   <button class="group-row history-toggle" onclick="toggleHistoryCard('${s.date}')">
+    <div class="row-copy"><div class="history-date">${fmtDate(s.date)}</div><div class="history-summary">上半身 ${done}/${exs.length}・腹筋 ${a.completed?'完走':'未完了'}・下半身 ${l.completed?'完走':'未完了'}・停止 ${(a.stops||0)+(l.stops||0)}回</div></div>
+    <span class="chevron history-chevron">⌄</span>
+   </button>
+   <div class="history-inline-detail">${historyDetailHTML(s)}<div class="history-inline-actions"><button onclick="editPastDate('${s.date}')">この日を編集</button></div></div>
+  </article>`
+ }).join('');
 }
+
+function toggleHistoryCard(date){
+ const card=document.getElementById('history-'+date);
+ if(card)card.classList.toggle('open')
+}
+function editPastDate(date){
+ selectedDate=date;
+ session=getSession(selectedDate);
+ activeTab='today';
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById('todayPage').classList.add('active');
+ document.querySelectorAll('.tabbar button').forEach(b=>b.classList.toggle('active',b.dataset.tab==='today'));
+ updateHeader();renderToday();renderSettings();
+ window.scrollTo({top:0,behavior:'smooth'});
+ toast(`${fmtDate(date)}を編集中`)
+}
+
 function openHistoryDetail(date){detailDate=date;const s=state.sessions.find(x=>x.date===date);document.getElementById('detailTitle').textContent=fmtDate(date);document.getElementById('detailContent').innerHTML=historyDetailHTML(s);document.getElementById('historyDetail').classList.add('show')}
 function closeHistoryDetail(){document.getElementById('historyDetail').classList.remove('show')}
 function historyDetailHTML(s){
@@ -281,7 +321,7 @@ function historyDetailHTML(s){
  const notes=['abs','lower'].filter(k=>s.circuits[k].note).map(k=>`<div class="group-row"><div class="row-copy"><b>${esc(state.circuitDefs[k].name)}メモ</b><small>${esc(s.circuits[k].note)}</small></div></div>`).join('');
  return summary+body+(notes?`<div class="section-label">メモ</div><div class="group">${notes}</div>`:'')+`<div class="section-label">管理</div><div class="group"><button class="group-row destructive" onclick="deleteHistory('${s.date}')"><div class="row-copy"><b>この記録を削除</b></div></button></div>`;
 }
-function editDetailDate(){selectedDate=detailDate;session=getSession(selectedDate);closeHistoryDetail();selectTab('today');render();scrollTo(0,0)}
+function editDetailDate(){closeHistoryDetail();editPastDate(detailDate)}
 function deleteHistory(date){if(!confirm(`${fmtDate(date)}の記録を削除しますか？`))return;state.sessions=state.sessions.filter(s=>s.date!==date);if(selectedDate===date){selectedDate=today;session=getSession(today)}save();closeHistoryDetail();render();toast('記録を削除しました')}
 
 function renderSettings(){
@@ -351,7 +391,7 @@ function adjustTimer(sec){timerEnd+=sec*1000;tickTimer()}
 function stopTimer(hide=true){clearInterval(timerId);timerId=null;if(hide!==false)document.getElementById('timer').classList.remove('show')}
 function toggleTimerExpanded(){document.getElementById('timer').classList.toggle('compact')}
 
-function exportData(){const blob=new Blob([JSON.stringify({version:'3.0.1',state,settings},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`training-log-${dateKey()}.json`;a.click();URL.revokeObjectURL(a.href)}
+function exportData(){const blob=new Blob([JSON.stringify({version:'3.0.2',state,settings},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`training-log-${dateKey()}.json`;a.click();URL.revokeObjectURL(a.href)}
 function importData(e){const f=e.target.files?.[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const x=JSON.parse(r.result);if(!x.state?.sessions||!x.state?.exercises)throw 0;state=x.state;settings={...settings,...(x.settings||{})};selectedDate=today;session=getSession(today);save();render();toast('読み込みました')}catch{alert('有効なバックアップではありません')}};r.readAsText(f);e.target.value=''}
 function resetSelectedDate(){if(!confirm(`${fmtDate(selectedDate)}の入力をリセットしますか？`))return;state.sessions=state.sessions.filter(s=>s.date!==selectedDate);session=getSession(selectedDate);save();render();toast('リセットしました')}
 
