@@ -1,14 +1,14 @@
 {
-  "name": "トレログ＋｜筋トレ進歩管理",
-  "short_name": "トレログ＋",
+  "name": "トレログ",
+  "short_name": "トレログ",
   "description": "ダブルプログレッション対応の筋トレ記録アプリ",
   "lang": "ja",
-  "start_url": "./index.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#F7F5F2",
-  "theme_color": "#2D6A4F",
+  "background_color": "#F5F6F3",
+  "theme_color": "#6F927E",
   "icons": [
     {
       "src": "./icons/icon-192.png",
