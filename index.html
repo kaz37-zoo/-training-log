@@ -179,6 +179,7 @@ button:active{transform:scale(.975);opacity:.82}
 <button class="group-row" onclick="openMenuManager('upper')"><div class="row-copy"><b id="upperMenuName"></b><small id="upperMenuCount"></small></div><span class="menu-mode-badge" id="upperMenuMode"></span><span class="chevron">›</span></button>
 <button class="group-row" onclick="openMenuManager('abs')"><div class="row-copy"><b id="absMenuName"></b><small id="absMenuCount"></small></div><span class="menu-mode-badge" id="absMenuMode"></span><span class="chevron">›</span></button>
 <button class="group-row" onclick="openMenuManager('lower')"><div class="row-copy"><b id="lowerMenuName"></b><small id="lowerMenuCount"></small></div><span class="menu-mode-badge" id="lowerMenuMode"></span><span class="chevron">›</span></button>
+<button class="group-row" onclick="openMenuManager('lowerCircuit')"><div class="row-copy"><b id="lowerCircuitMenuName"></b><small id="lowerCircuitMenuCount"></small></div><span class="menu-mode-badge" id="lowerCircuitMenuMode"></span><span class="chevron">›</span></button>
 </div><div class="section-label">外観とアクセシビリティ</div><div class="group">
 <button class="group-row" onclick="cycleTheme()"><div class="row-copy"><b>外観</b><small>システム・ライト・ダーク</small></div><span id="themeValue"></span></button>
 <button class="group-row" onclick="cycleTextSize()"><div class="row-copy"><b>文字サイズ</b><small>端末の文字拡大と併用できます</small></div><span id="textSizeValue"></span></button>
@@ -187,7 +188,7 @@ button:active{transform:scale(.975);opacity:.82}
 <div class="group-row"><div class="row-copy"><b>使用データ量</b><small id="storageValue">計算中</small><div class="storage-meter"><i id="storageMeter"></i></div></div></div>
 <button class="group-row" onclick="optimizeData()"><div class="row-copy"><b>データを最適化</b><small>空データと不要な重複情報だけを整理</small></div></button>
 <button class="group-row" onclick="runDiagnostics(true)"><div class="row-copy"><b>アプリ診断を実行</b><small id="diagnosticValue">未実行</small></div><span class="chevron">›</span></button>
-</div><div class="section-label">アプリ情報</div><div class="group"><div class="group-row"><div class="row-copy"><b>バージョン</b></div><span>3.2</span></div></div></section></main><nav class="tabbar" aria-label="メインナビゲーション" id="tabbar"><button class="active" data-tab="today" onclick="selectTab('today')"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 3v4m10-4v4M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1z"/><path class="fillable" d="M8 12l2.2 2.2L16 9"/></svg><span>今日</span></button><button data-tab="history" onclick="selectTab('history')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>履歴</span></button><button data-tab="settings" onclick="selectTab('settings')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21h-4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1L7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1v4H21a1.7 1.7 0 0 0-1.6 1z"/></svg><span>設定</span></button></nav><section class="detail-page" id="historyDetail" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="detail-header"><button onclick="closeHistoryDetail()">‹ 履歴</button><b id="detailTitle"></b><button onclick="editDetailDate()">編集</button></div><div class="detail-content" id="detailContent"></div></section><div class="timer compact" id="timer"><div class="timer-summary" onclick="toggleTimerExpanded()"><div class="timer-copy"><small id="timerNext">休憩中</small><b id="timerText">01:30</b></div><button>⌃</button></div><div class="timer-expanded"><div class="timer-actions"><button onclick="adjustTimer(-15)">−15秒</button><button onclick="stopTimer()">スキップ</button><button onclick="adjustTimer(15)">＋15秒</button></div></div></div><div class="sheet" id="managerSheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" onclick="sheetBackdrop(event)"><div class="sheet-panel" id="managerPanel"><div class="sheet-handle"></div><div class="sheet-nav"><button onclick="closeSheet()">キャンセル</button><b id="sheetTitle"></b><button id="sheetDone" onclick="saveSheet()">完了</button></div><div id="sheetBody"></div></div></div><div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div><div class="sr-only" id="a11yLive" role="status" aria-live="polite" aria-atomic="true"></div><div class="undo-toast" id="undoToast"><span id="undoText"></span><button onclick="undoLastDelete()">元に戻す</button></div><script>
+</div><div class="section-label">アプリ情報</div><div class="group"><div class="group-row"><div class="row-copy"><b>バージョン</b></div><span>3.3</span></div></div></section></main><nav class="tabbar" aria-label="メインナビゲーション" id="tabbar"><button class="active" data-tab="today" onclick="selectTab('today')"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 3v4m10-4v4M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1z"/><path class="fillable" d="M8 12l2.2 2.2L16 9"/></svg><span>今日</span></button><button data-tab="history" onclick="selectTab('history')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>履歴</span></button><button data-tab="settings" onclick="selectTab('settings')"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21h-4v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H3v-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1L7 4.2l.1.1A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.6V3h4v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.1v4H21a1.7 1.7 0 0 0-1.6 1z"/></svg><span>設定</span></button></nav><section class="detail-page" id="historyDetail" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="detail-header"><button onclick="closeHistoryDetail()">‹ 履歴</button><b id="detailTitle"></b><button onclick="editDetailDate()">編集</button></div><div class="detail-content" id="detailContent"></div></section><div class="timer compact" id="timer"><div class="timer-summary" onclick="toggleTimerExpanded()"><div class="timer-copy"><small id="timerNext">休憩中</small><b id="timerText">01:30</b></div><button>⌃</button></div><div class="timer-expanded"><div class="timer-actions"><button onclick="adjustTimer(-15)">−15秒</button><button onclick="stopTimer()">スキップ</button><button onclick="adjustTimer(15)">＋15秒</button></div></div></div><div class="sheet" id="managerSheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" onclick="sheetBackdrop(event)"><div class="sheet-panel" id="managerPanel"><div class="sheet-handle"></div><div class="sheet-nav"><button onclick="closeSheet()">キャンセル</button><b id="sheetTitle"></b><button id="sheetDone" onclick="saveSheet()">完了</button></div><div id="sheetBody"></div></div></div><div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div><div class="sr-only" id="a11yLive" role="status" aria-live="polite" aria-atomic="true"></div><div class="undo-toast" id="undoToast"><span id="undoText"></span><button onclick="undoLastDelete()">元に戻す</button></div><script>
 const KEY='kaz-training-log-v2',OLD_KEY='kaz-training-log-v1',SETTINGS_KEY='kaz-training-settings-v2';
 const DEFAULT_EXERCISES=[
 {id:'pushup',name:'プッシュアップ',group:'胸',type:'reps',sets:3,weight:0,rest:90,note:'10回×3セット'},
@@ -197,7 +198,16 @@ const DEFAULT_EXERCISES=[
 {id:'sideraise',name:'サイドレイズ',group:'肩',type:'wr',sets:3,weight:5,rest:60,note:'5kg・15回×3セット'},
 {id:'rearraise',name:'リアレイズ',group:'肩',type:'wr',sets:3,weight:2,rest:60,note:'2kg・15回×3セット'},
 {id:'curl',name:'ダンベルカール',group:'腕',type:'wr',sets:3,weight:5,rest:60,note:'左右5kg・15回×3セット'},
-{id:'dips',name:'椅子ディップス',group:'腕',type:'reps',sets:3,weight:0,rest:60,note:'限界回数×3セット'}
+{id:'dips',name:'椅子ディップス',group:'腕',type:'reps',sets:3,weight:0,rest:60,note:'限界回数×3セット'},
+{id:'slow_squat_30',name:'スロースクワット',group:'脚',type:'reps',sets:1,weight:0,targetReps:30,rest:90,note:'30回'},
+{id:'bulgarian_split_squat',name:'ブルガリアンスクワット',group:'臀部',type:'reps',sets:3,weight:0,targetReps:10,rest:90,note:'左右各10回を目安'},
+{id:'lower_circuit_slow',name:'スロースクワット',group:'下半身サーキット',type:'reps',sets:1,weight:0,targetReps:0,rest:0,note:''},
+{id:'lower_circuit_full',name:'フルスクワット',group:'下半身サーキット',type:'reps',sets:1,weight:0,targetReps:0,rest:0,note:''},
+{id:'lower_circuit_bounce',name:'バウンドスクワット',group:'下半身サーキット',type:'reps',sets:1,weight:0,targetReps:0,rest:0,note:''},
+{id:'lower_circuit_jump',name:'ジャンプスクワット',group:'下半身サーキット',type:'reps',sets:1,weight:0,targetReps:0,rest:0,note:''},
+{id:'lower_circuit_inout',name:'インアウトスクワット',group:'下半身サーキット',type:'reps',sets:1,weight:0,targetReps:0,rest:0,note:''},
+{id:'lower_circuit_lunge',name:'ジャンプランジ',group:'下半身サーキット',type:'reps',sets:1,weight:0,targetReps:0,rest:0,note:''},
+{id:'lower_circuit_hold',name:'スクワットキープ',group:'下半身サーキット',type:'reps',sets:1,weight:0,targetReps:0,rest:0,note:''}
 ];
 const DEFAULT_CIRCUITS={
  abs:{name:'腹筋サーキット',description:'動画に合わせて実施',items:['レッグリフト','ニートゥー','クランチ','ロシアンツイスト','ボート','リバースクランチ','パルスクランチ','バイシクルクランチ']},
@@ -206,9 +216,10 @@ const DEFAULT_CIRCUITS={
 const DEFAULT_MENU_CONFIGS={
  upper:{name:'上半身メニュー',mode:'normal',description:'',days:['0','1','2','3','4','5','6']},
  abs:{name:'腹筋サーキット',mode:'circuit',description:'動画に合わせて実施',days:['0','1','2','3','4','5','6']},
- lower:{name:'下半身サーキット',mode:'circuit',description:'動画に合わせて実施',days:['0','1','2','3','4','5','6']}
+ lower:{name:'下半身メニュー',mode:'normal',description:'',days:['0','1','2','3','4','5','6']},
+ lowerCircuit:{name:'下半身サーキット',mode:'circuit',description:'動画に合わせて7種目を連続実施',days:['0','1','2','3','4','5','6']}
 };
-const MENU_GROUPS={upper:['胸','背中','肩','腕'],abs:['腹筋'],lower:['脚','臀部','足']};
+const MENU_GROUPS={upper:['胸','背中','肩','腕'],abs:['腹筋'],lower:['脚','臀部','足'],lowerCircuit:['下半身サーキット']};
 
 const clone=o=>JSON.parse(JSON.stringify(o));
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -240,7 +251,7 @@ function loadState(){
   if(!s.circuitDefs)s.circuitDefs=clone(DEFAULT_CIRCUITS);
   for(const k of ['abs','lower'])s.circuitDefs[k]={...clone(DEFAULT_CIRCUITS[k]),...(s.circuitDefs[k]||{}),items:Array.isArray(s.circuitDefs[k]?.items)?s.circuitDefs[k].items:clone(DEFAULT_CIRCUITS[k].items)};
   if(!s.menuConfigs)s.menuConfigs=clone(DEFAULT_MENU_CONFIGS);
-  for(const k of ['upper','abs','lower']){
+  for(const k of ['upper','abs','lower','lowerCircuit']){
    const c=s.menuConfigs[k]||{};
    s.menuConfigs[k]={...clone(DEFAULT_MENU_CONFIGS[k]),...c,days:Array.isArray(c.days)&&c.days.length?c.days.map(String):clone(DEFAULT_MENU_CONFIGS[k].days)};
   }
@@ -250,7 +261,7 @@ function loadState(){
     items.forEach((name,i)=>s.exercises.push({id:`${kind}_legacy_${i}`,name,group,type:'reps',sets:1,weight:0,targetReps:0,rest:0,enabled:true,useMenuDays:true,order:i,note:'',days:clone(s.menuConfigs[kind].days)}))
    }
   }
-  s.sessions=s.sessions.map(x=>({...x,menuSnapshots:x.menuSnapshots||null,exerciseSnapshots:x.exerciseSnapshots||null}));
+  s.sessions=s.sessions.map(x=>{const y={...x,menuSnapshots:x.menuSnapshots||null,exerciseSnapshots:x.exerciseSnapshots||null};y.circuits=y.circuits||{};if(!y.circuits.lowerCircuit&&y.circuits.lower)y.circuits.lowerCircuit=clone(y.circuits.lower);y.circuits.lowerCircuit={completed:false,stops:0,note:'',...(y.circuits.lowerCircuit||{})};return y});
   return s
  }catch{
   return{exercises:clone(DEFAULT_EXERCISES).map((e,i)=>({...e,targetReps:0,enabled:true,useMenuDays:true,order:i,days:['0','1','2','3','4','5','6']})),sessions:[],deletedExerciseIds:[],circuitDefs:clone(DEFAULT_CIRCUITS),menuConfigs:clone(DEFAULT_MENU_CONFIGS)}
@@ -261,11 +272,16 @@ let session=getSession(selectedDate),saveTimer=null,timerEnd=0,timerId=null,time
 
 function getSession(date){
  let s=state.sessions.find(x=>x.date===date);
- if(!s){s={date,log:{},circuits:{abs:{completed:false,stops:0,note:''},lower:{completed:false,stops:0,note:''}},finished:false};state.sessions.push(s)}
- if(!s.log)s.log={};if(!s.circuits)s.circuits={};for(const k of ['upper','abs','lower'])s.circuits[k]={completed:false,stops:0,note:'',...(s.circuits[k]||{})};
+ if(!s){s={date,log:{},circuits:{abs:{completed:false,stops:0,note:''},lower:{completed:false,stops:0,note:''},lowerCircuit:{completed:false,stops:0,note:''}},finished:false};state.sessions.push(s)}
+ if(!s.log)s.log={};if(!s.circuits)s.circuits={};for(const k of ['upper','abs','lower','lowerCircuit'])s.circuits[k]={completed:false,stops:0,note:'',...(s.circuits[k]||{})};
  return s;
 }
-function menuKindForGroup(group){if(MENU_GROUPS.upper.includes(group))return'upper';if(MENU_GROUPS.abs.includes(group))return'abs';return'lower'}
+function menuKindForGroup(group){
+ if(MENU_GROUPS.upper.includes(group))return'upper';
+ if(MENU_GROUPS.abs.includes(group))return'abs';
+ if(MENU_GROUPS.lowerCircuit.includes(group))return'lowerCircuit';
+ return'lower'
+}
 function menuApplies(kind,date=selectedDate){return (state.menuConfigs?.[kind]?.days||DEFAULT_MENU_CONFIGS[kind].days).includes(dayIndex(date))}
 function exercisesForMenu(kind,date=selectedDate){
  const d=dayIndex(date),menuDays=state.menuConfigs?.[kind]?.days||[];
@@ -274,13 +290,17 @@ function exercisesForMenu(kind,date=selectedDate){
   .sort((a,b)=>(a.order??999)-(b.order??999))
 }
 function applicableExercises(date=selectedDate){
- return ['upper','abs','lower'].flatMap(k=>exercisesForMenu(k,date))
+ return ['upper','abs','lower','lowerCircuit'].flatMap(k=>exercisesForMenu(k,date))
 }
 function getSets(ex,s=session){
  const raw=s.log?.[ex.id],arr=Array.isArray(raw)?raw:(raw?.sets||[]);
+ if(!arr.length){
+  const previous=[...state.sessions].filter(x=>x.date<s.date&&x.log?.[ex.id]).sort((a,b)=>b.date.localeCompare(a.date))[0];
+  const oldRaw=previous?.log?.[ex.id],oldSets=Array.isArray(oldRaw)?oldRaw:(oldRaw?.sets||[]);
+  if(oldSets.length)for(let i=0;i<ex.sets;i++){const v=oldSets[Math.min(i,oldSets.length-1)]||{};arr.push({w:Number(v.w??ex.weight)||0,r:Number(v.r??ex.targetReps)||0,done:false})}
+ }
  while(arr.length<ex.sets)arr.push({w:Number(ex.weight)||0,r:Number(ex.targetReps)||0,done:false});
- s.log[ex.id]={sets:arr.slice(0,ex.sets)};
- return s.log[ex.id].sets;
+ s.log[ex.id]={sets:arr.slice(0,ex.sets)};return s.log[ex.id].sets
 }
 function exerciseDone(ex,s=session){
  const raw=s.log?.[ex.id],sets=Array.isArray(raw)?raw:(raw?.sets||[]);
@@ -364,8 +384,8 @@ function render(){
  })
 }
 function renderToday(){
- const normalKinds=['upper','abs','lower'].filter(k=>menuApplies(k)&&state.menuConfigs[k].mode==='normal');
- const circuitKinds=['upper','abs','lower'].filter(k=>menuApplies(k)&&state.menuConfigs[k].mode==='circuit');
+ const normalKinds=['upper','abs','lower','lowerCircuit'].filter(k=>menuApplies(k)&&state.menuConfigs[k].mode==='normal');
+ const circuitKinds=['upper','abs','lower','lowerCircuit'].filter(k=>menuApplies(k)&&state.menuConfigs[k].mode==='circuit');
  const normalExs=normalKinds.flatMap(k=>exercisesForMenu(k));
  const done=normalExs.filter(ex=>exerciseDone(ex)).length,cDone=circuitKinds.filter(k=>session.circuits[k]?.completed).length;
  const total=normalExs.length+circuitKinds.length,complete=done+cDone,pct=total?Math.round(complete/total*100):0;
@@ -429,7 +449,7 @@ function finishWorkout(){
  session.finished=true;
  session.summary={upperDone:active.filter(ex=>exerciseDone(ex)).length,upperTotal:active.length,upperCircuit:session.circuits.upper?.completed||false,abs:session.circuits.abs.completed,lower:session.circuits.lower.completed};
  session.exerciseSnapshots=Object.fromEntries(active.map(ex=>[ex.id,{name:ex.name,group:ex.group,type:ex.type,sets:ex.sets,targetReps:ex.targetReps}]));
- session.menuSnapshots=Object.fromEntries(['upper','abs','lower'].map(k=>[k,{...clone(state.menuConfigs[k]),exerciseIds:exercisesForMenu(k).map(e=>e.id)}]));
+ session.menuSnapshots=Object.fromEntries(['upper','abs','lower','lowerCircuit'].map(k=>[k,{...clone(state.menuConfigs[k]),exerciseIds:exercisesForMenu(k).map(e=>e.id)}]));
  save();vibrate([30,40,30]);toast(wasFinished?'履歴を更新しました':'トレーニングを完了しました');render()
 }
 function returnToToday(){
@@ -449,7 +469,7 @@ function renderHistory(){
   const snap=s.menuSnapshots||state.menuConfigs,open=openHistoryDates.has(s.date);
   return `<article class="group history-card ${open?'open':''}" id="history-${s.date}">
    <button class="group-row history-toggle" onclick="toggleHistoryCard('${s.date}')">
-    <div class="row-copy"><div class="history-date">${fmtDate(s.date)}</div><div class="history-summary">${['upper','abs','lower'].map(k=>historyMenuSummary(s,k,snap[k]||DEFAULT_MENU_CONFIGS[k])).join('・')}</div></div>
+    <div class="row-copy"><div class="history-date">${fmtDate(s.date)}</div><div class="history-summary">${['upper','abs','lower','lowerCircuit'].map(k=>historyMenuSummary(s,k,snap[k]||DEFAULT_MENU_CONFIGS[k])).join('・')}</div></div>
     <span class="chevron history-chevron">⌄</span>
    </button>
    <div class="history-inline-detail">${historyDetailHTML(s)}<div class="history-inline-actions"><button onclick="editPastDate('${s.date}')">この日を編集</button></div></div>
@@ -490,9 +510,9 @@ function closeHistoryDetail(){document.getElementById('historyDetail').classList
 function historyDetailHTML(s){
  const ids=Object.keys(s.log||{}),exs=ids.map(id=>state.exercises.find(ex=>ex.id===id)||{id,...(s.exerciseSnapshots?.[id]||{}),name:s.exerciseSnapshots?.[id]?.name||'削除済み種目',group:s.exerciseSnapshots?.[id]?.group||'その他',type:s.exerciseSnapshots?.[id]?.type||'reps',sets:(s.log[id]?.sets||s.log[id]||[]).length});
  const groups=['胸','背中','肩','腕','腹筋','脚','臀部','足','その他'],snap=s.menuSnapshots||state.menuConfigs;
- const summary=`<div class="section-label">概要</div><div class="group">${['upper','abs','lower'].map(k=>`<div class="group-row"><div class="row-copy"><b>${esc((snap[k]||DEFAULT_MENU_CONFIGS[k]).name)}</b><small>${esc(historyMenuSummary(s,k,snap[k]||DEFAULT_MENU_CONFIGS[k]))}</small></div></div>`).join('')}</div>`;
+ const summary=`<div class="section-label">概要</div><div class="group">${['upper','abs','lower','lowerCircuit'].map(k=>`<div class="group-row"><div class="row-copy"><b>${esc((snap[k]||DEFAULT_MENU_CONFIGS[k]).name)}</b><small>${esc(historyMenuSummary(s,k,snap[k]||DEFAULT_MENU_CONFIGS[k]))}</small></div></div>`).join('')}</div>`;
  const body=groups.map(g=>{const list=exs.filter(e=>e.group===g);if(!list.length)return'';return `<div class="section-label">${g}</div><div class="group">${list.map(ex=>{const sets=(s.log[ex.id].sets||s.log[ex.id]);return `<div class="hist-ex"><h4>${esc(ex.name)}</h4><div class="hist-chips">${sets.map((x,i)=>`<span class="chip">S${i+1} ${ex.type==='wr'?Number(x.w||0)+'kg・':''}${Number(x.r||0)}回${x.done?' ✓':''}</span>`).join('')}</div></div>`}).join('')}</div>`}).join('');
- const notes=['upper','abs','lower'].filter(k=>s.circuits?.[k]?.note).map(k=>`<div class="group-row"><div class="row-copy"><b>${esc((snap[k]||DEFAULT_MENU_CONFIGS[k]).name)}メモ</b><small>${esc(s.circuits[k].note)}</small></div></div>`).join('');
+ const notes=['upper','abs','lower','lowerCircuit'].filter(k=>s.circuits?.[k]?.note).map(k=>`<div class="group-row"><div class="row-copy"><b>${esc((snap[k]||DEFAULT_MENU_CONFIGS[k]).name)}メモ</b><small>${esc(s.circuits[k].note)}</small></div></div>`).join('');
  return summary+body+(notes?`<div class="section-label">メモ</div><div class="group">${notes}</div>`:'')+`<div class="section-label">管理</div><div class="group"><button class="group-row destructive" onclick="deleteHistory('${s.date}')"><div class="row-copy"><b>この記録を削除</b></div></button></div>`
 }
 function editDetailDate(){closeHistoryDetail();editPastDate(detailDate)}
@@ -515,7 +535,7 @@ function renderSettings(){
  document.getElementById('wakeToggle').classList.toggle('on',!!settings.wakeLock);
  document.getElementById('hapticsToggle')?.classList.toggle('on',settings.haptics!==false);
  document.getElementById('hapticsToggle')?.setAttribute('aria-checked',settings.haptics!==false?'true':'false');
- for(const k of ['upper','abs','lower']){
+ for(const k of ['upper','abs','lower','lowerCircuit']){
   const c=state.menuConfigs[k],count=state.exercises.filter(e=>MENU_GROUPS[k].includes(e.group)).length;
   document.getElementById(k+'MenuName').textContent=c.name;
   document.getElementById(k+'MenuCount').textContent=`${count}種目・${c.days.map(x=>'日月火水木金土'[Number(x)]).join('')}`;
@@ -532,7 +552,7 @@ async function releaseWakeLock(){try{await wakeLock?.release();wakeLock=null}cat
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&settings.wakeLock&&activeTab==='today')requestWakeLock();else releaseWakeLock()});
 
 
-function openPastDatePicker(){sheetMode='pastDate';sheetData={date:selectedDate};document.getElementById('sheetTitle').textContent='過去の日付を選択';document.getElementById('sheetBody').innerHTML=`<div class="form-section"><label>日付</label><div class="form-group"><div class="form-row"><span>トレーニング日</span><input id="pastDateInput" type="date" max="${today}" value="${selectedDate}"></div></div></div><div class="form-section"><div class="form-group"><div class="group-row"><div class="row-copy"><b>選択した日を今日画面で開きます</b><small>上半身・腹筋・下半身を通常どおり入力できます</small></div></div></div></div>`;openSheet()}
+function openPastDatePicker(){sheetMode='pastDate';sheetData={date:selectedDate};document.getElementById('sheetTitle').textContent='過去の日付を選択';document.getElementById('sheetBody').innerHTML=`<div class="form-section"><label>日付</label><div class="form-group"><div class="form-row"><span>トレーニング日</span><input id="pastDateInput" type="date" max="${today}" value="${selectedDate}"></div></div></div><div class="form-section"><div class="form-group"><div class="group-row"><div class="row-copy"><b>選択した日を今日画面で開きます</b><small>上半身・腹筋・下半身メニュー・下半身サーキットを入力できます</small></div></div></div></div>`;openSheet()}
 function openSelectedPastDate(){const value=document.getElementById('pastDateInput')?.value;if(!value){alert('日付を選択してください');return}if(value>today){alert('未来の日付は選択できません');return}closeSheet();editPastDate(value)}
 
 function openMenuManager(kind='upper'){
@@ -692,7 +712,7 @@ function runDiagnostics(showResult=false){
  const checks=[];
  const add=(name,ok)=>checks.push({name,ok:!!ok});
  add('localStorage書き込み',(()=>{try{localStorage.setItem('__tltest','1');localStorage.removeItem('__tltest');return true}catch{return false}})());
- add('メニュー設定',!!state.menuConfigs&&['upper','abs','lower'].every(k=>state.menuConfigs[k]));
+ add('メニュー設定',!!state.menuConfigs&&['upper','abs','lower','lowerCircuit'].every(k=>state.menuConfigs[k]));
  add('種目ID重複なし',new Set(state.exercises.map(e=>e.id)).size===state.exercises.length);
  add('日付形式',state.sessions.every(s=>/^\d{4}-\d{2}-\d{2}$/.test(s.date)));
  add('セッション日付重複なし',new Set(state.sessions.map(s=>s.date)).size===state.sessions.length);
@@ -714,7 +734,7 @@ addEventListener('online',()=>{updateOnlineState();toast('オンラインに戻�
 addEventListener('offline',()=>{updateOnlineState();toast('オフラインです。記録は端末に保存されます')});
 function exportData(){
  flushSave();const exported=compactState(state);
- const blob=new Blob([JSON.stringify({version:'3.2',exportedAt:new Date().toISOString(),state:exported,settings},null,2)],{type:'application/json'});
+ const blob=new Blob([JSON.stringify({version:'3.3',exportedAt:new Date().toISOString(),state:exported,settings},null,2)],{type:'application/json'});
  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`training-log-${dateKey()}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
  haptic('success');toast('バックアップを書き出しました')
 }
@@ -726,7 +746,7 @@ function migrateLegacyBackup(x){
  const entries=Array.isArray(src)?src:Object.entries(src).map(([date,v])=>({date,...v})),sessions=[];
  for(const item of entries){
   const date=item.date||item.day;if(!date)continue;
-  const s={date,log:{},circuits:{abs:{completed:false,stops:0,note:''},lower:{completed:false,stops:0,note:''}},finished:true,exerciseSnapshots:{}};
+  const s={date,log:{},circuits:{abs:{completed:false,stops:0,note:''},lower:{completed:false,stops:0,note:''},lowerCircuit:{completed:false,stops:0,note:''}},finished:true,exerciseSnapshots:{}};
   const logs=item.log||item.exercises||item.upper||{};
   if(Array.isArray(logs))for(const ex of logs){const id=ex.id||('legacy_'+Math.random().toString(36).slice(2)),sets=(ex.sets||[]).map(v=>({w:Number(v.w??v.weight??0),r:Number(v.r??v.reps??0),done:v.done!==false}));s.log[id]={sets};s.exerciseSnapshots[id]={name:ex.name||'旧バックアップ種目',group:ex.group||'その他',type:ex.type||'reps',sets:sets.length}}
   else for(const [id,val] of Object.entries(logs)){const arr=Array.isArray(val)?val:(val?.sets||[]);s.log[id]={sets:arr.map(v=>({w:Number(v.w??v.weight??0),r:Number(v.r??v.reps??v??0),done:v.done!==false}))}}
